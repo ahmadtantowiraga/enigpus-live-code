@@ -8,6 +8,7 @@ import service.InventoryServiceImpl;
 import util.Utility;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class EnigpusView {
@@ -46,7 +47,6 @@ public class EnigpusView {
             }else {
                 switch (Menu) {
                     case 1:
-                        System.out.println("pilihan 1");
                         addBookView();
                         break;
                     case 2:
@@ -59,7 +59,7 @@ public class EnigpusView {
                         System.out.println("Pilihan 4");
                         break;
                     case 5:
-                        System.out.println("pilihan 5");
+                        getAllBookView();
                         break;
                     case 6:
                         System.out.println("pilihan 6");
@@ -88,11 +88,38 @@ public class EnigpusView {
                 String publicationPeriod=Utility.inputUtil("select weekly or monthly");
                 int publicationYear=Utility.inputIntUtil("Input publication Year : ");
                 Book magazine=new Magazine(title,publicationYear,publicationPeriod);
-                magazine.setCode(publicationYear+"-"+"A"+"-"+Utility.code());
+                magazine.setCode(publicationYear+"-"+"B"+"-"+Utility.code());
                 inventoryService.addBook(magazine);
                 break;
             }else{
                 System.out.println("The choice entered is incorrect, Please Input Again");
+            }
+        }
+    }
+    public void getAllBookView(){
+        List<Book> books = inventoryService.getAllBook();
+        Novel novel = (Novel) books;
+        Magazine magazine=(Magazine) books;
+        System.out.println("Novel List : ");
+        String format = String.format("%-15s %-15s %-15s %-15s %-15s", "Novel Code", "Novel Title",
+                "Novel Publiser", "Novel Publication Year", "Novel Writer");
+        System.out.println(format);
+        for (int i = 0; i < books.size(); i++) {
+            if (books.get(0).getCode().charAt(5)=='A'){
+                System.out.printf("%-15s %-15s %-15s %-15s %-15s\n", novel.getCode(), novel.getTitle(),
+                        novel.getPublisher(),novel.getPublicationYear(),novel.getWriter());
+                System.out.println();
+            }
+        }
+        System.out.println("Magazine List : ");
+        String format2 = String.format("%-15s %-15s %-15s %-15s", "Magazine Code", "Magazine Title",
+                "Magazine publication Period", "Magazine Publication Year");
+        System.out.println(format2);
+        for (int i = 0; i < books.size(); i++) {
+            if (books.get(0).getCode().charAt(5)=='B'){
+                System.out.printf("%-15s %-15s %-15s %-15s\n", magazine.getCode(),magazine.getTitle(),
+                        magazine.getCode(), magazine.getPublicationYear());
+                System.out.println();
             }
         }
     }
