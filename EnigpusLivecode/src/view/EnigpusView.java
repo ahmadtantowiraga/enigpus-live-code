@@ -120,10 +120,27 @@ public class EnigpusView {
         }
     }
     public void searchByTitle(){
-        String title=Utility.inputUtil("Input the title to seacrh data");
+        String title=Utility.inputUtil("Input the key title to seacrh data : ");
         List<Book> books = inventoryService.getAllBook();
         for (int i = 0; i < books.size(); i++) {
-
+            if (books.get(i).getTitle().equals(title)){
+                try {
+                    Novel novel=(Novel) books.get(i);
+                    System.out.println("Novel Code : "+novel.getCode());
+                    System.out.println("Novel Title : "+novel.getTitle());
+                    System.out.println("Novel Publiser : "+novel.getPublisher());
+                    System.out.println("Novel publication year : "+novel.getPublicationYear());
+                    System.out.println("Novel Writer : "+novel.getWriter());
+                    System.out.println();
+                }catch (Exception e){
+                    Magazine magazine=(Magazine) books.get(i);
+                    System.out.println("Magazine Code : "+magazine.getCode());
+                    System.out.println("Magazine Title : "+magazine.getTitle());
+                    System.out.println("Magazine publication Periodr : "+magazine.getPublicationPeriod());
+                    System.out.println("Magazine publication year : "+magazine.getPublicationYear());
+                    System.out.println();
+                }
+            }
         }
     }
 
