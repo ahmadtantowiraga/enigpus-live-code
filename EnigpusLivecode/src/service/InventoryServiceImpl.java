@@ -1,9 +1,11 @@
 package service;
 
+import entity.Book;
+
 public class InventoryServiceImpl implements InventoryService {
 
     @Override
-    public void addBook() {
+    public void addBook(Book book) {
 
     }
 
