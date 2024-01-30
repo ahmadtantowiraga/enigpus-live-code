@@ -12,4 +12,20 @@ public abstract class Book {
 
     public abstract String getCode();
     public abstract void getTitle();
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getPublicationYear() {
+        return publicationYear;
+    }
+
+    public void setPublicationYear(int publicationYear) {
+        this.publicationYear = publicationYear;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 }
