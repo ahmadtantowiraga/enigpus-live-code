@@ -15,8 +15,9 @@ public class Novel extends Book{
     }
 
     @Override
-    public void getTitle() {
+    public String getTitle() {
 
+        return null;
     }
 
     public String getPublisher() {
