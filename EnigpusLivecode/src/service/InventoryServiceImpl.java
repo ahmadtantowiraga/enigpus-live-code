@@ -26,8 +26,8 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public void deleteBookByCode() {
-
+    public void deleteBookByCode(List<Book> books) {
+        FileUtil.saveObject(books);
     }
 
     @Override

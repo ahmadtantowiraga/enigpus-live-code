@@ -9,7 +9,7 @@ public interface InventoryService {
 
    public void searchBookByTitle();
    public void searchBookByCode();
-   public void deleteBookByCode();
+   public void deleteBookByCode(List<Book> books);
    public List<Book> getAllBook();
 
    public void updateBook();

@@ -58,7 +58,7 @@ public class EnigpusView {
                         searchByCode();
                         break;
                     case 4:
-                        System.out.println("Pilihan 4");
+                        deleteByCode();
                         break;
                     case 5:
                         getAllBookView();
@@ -164,6 +164,16 @@ public class EnigpusView {
                     System.out.println("Magazine publication year : "+magazine.getPublicationYear());
                     System.out.println();
                 }
+            }
+        }
+    }
+    public void deleteByCode(){
+        String code=Utility.inputUtil("Input the key Code to delete data : ");
+        List<Book> books = inventoryService.getAllBook();
+        for (int i = 0; i < books.size(); i++) {
+            if (books.get(i).getCode().equals(code)){
+                books.remove(i);
+                inventoryService.deleteBookByCode(books);
             }
         }
     }
