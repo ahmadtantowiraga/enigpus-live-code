@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class FileUtil {
-    private static final Path enigpusPath = Path.of("enigpus");
+    private static final Path enigpusPath = Path.of("enigpus2");
 
     // menyimpan object
     public static void saveObject(Object object) {

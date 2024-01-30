@@ -3,12 +3,12 @@ package entity;
 import java.io.Serializable;
 
 public class Novel extends Book implements Serializable {
-    public String title;
-    public int publicationYear;
-    public String code;
+    private String title;
+    private int publicationYear;
+    private String code;
     private static final long serialVersionUID = 1L;
-    public String publisher;
-    public String writer;
+    private String publisher;
+    private String writer;
     public Novel(String title, int publicationYear,String publisher, String writer, String code) {
         this.title=title;
         this.publicationYear=publicationYear;

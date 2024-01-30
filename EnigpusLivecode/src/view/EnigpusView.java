@@ -7,6 +7,7 @@ import service.InventoryService;
 import service.InventoryServiceImpl;
 import util.Utility;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -99,7 +100,7 @@ public class EnigpusView {
         List<Book> books = inventoryService.getAllBook();
         for (int i = 0; i < books.size(); i++) {
             if (books.get(i).getCode()!=null){
-                if (books.get(i).getCode().charAt(5)=='A'){
+                try{
                     Novel novel=(Novel) books.get(i);
                     System.out.println("Novel Code : "+novel.getCode());
                     System.out.println("Novel Title : "+novel.getTitle());
@@ -107,7 +108,7 @@ public class EnigpusView {
                     System.out.println("Novel publication year : "+novel.getPublicationYear());
                     System.out.println("Novel Writer : "+novel.getWriter());
                     System.out.println();
-                }else{
+                }catch (Exception e){
                     Magazine magazine=(Magazine) books.get(i);
                     System.out.println("Magazine Code : "+magazine.getCode());
                     System.out.println("Magazine Title : "+magazine.getTitle());
@@ -122,27 +123,8 @@ public class EnigpusView {
         String title=Utility.inputUtil("Input the title to seacrh data");
         List<Book> books = inventoryService.getAllBook();
         for (int i = 0; i < books.size(); i++) {
-            Novel novel = (Novel) books.get(i);
-            if (novel.getTitle().equals(title)){
-                System.out.println("Novel Code : "+novel.getCode());
-                System.out.println("Novel Title : "+novel.getTitle());
-                System.out.println("Novel Publiser : "+novel.getPublisher());
-                System.out.println("Novel publication year : "+novel.getPublicationYear());
-                System.out.println("Novel Writer : "+novel.getWriter());
-                System.out.println();
-            }
+
         }
     }
-//    public void novelView(){
-//        List<Book> books = inventoryService.getAllBook();
-//        List<Novel> novel=new ArrayList<>();
-//        for (int i = 0; i < books.size(); i++) {
-//            if (books.get(i).getCode()!=null) {
-//                if (books.get(i).getCode().charAt(5) == 'A') {
-//                    novel.add((Novel) books.get(i));
-//                }
-//            }
-//        }
-//        System.out.println(novel.size());
-//    }
+
 }

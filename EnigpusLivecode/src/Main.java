@@ -5,5 +5,6 @@ public class Main {
         EnigpusView menu=new EnigpusView();
         menu.showMenu();
 //        menu.novelView();
+
     }
 }
