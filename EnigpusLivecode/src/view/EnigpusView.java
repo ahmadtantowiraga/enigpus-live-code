@@ -99,26 +99,26 @@ public class EnigpusView {
     public void getAllBookView(){
         List<Book> books = inventoryService.getAllBook();
         System.out.println("Novel List:");
-        String format = String.format("%-20s %-20s %-30s %-30s %-30s", "Novel Code", "Novel Title", "Novel Publiser",
+        String format = String.format("%-20s %-30s %-30s %-30s %-30s", "Novel Code", "Novel Title", "Novel Publiser",
                 "Novel publication year","Novel Writer");
         System.out.println(format);
         for (int i = 0; i < books.size(); i++) {
             try {
                 Novel novel = (Novel) books.get(i);
-                System.out.printf("%-20s %-20s %-30s %-30s %-30s\n", novel.getCode(),novel.getTitle(),novel.getPublisher(),novel.getPublicationYear(),novel.getWriter());
+                System.out.printf("%-20s %-30s %-30s %-30s %-30s\n", novel.getCode(),novel.getTitle(),novel.getPublisher(),novel.getPublicationYear(),novel.getWriter());
             } catch (Exception e) {
                 System.out.print("");
             }
         }
         System.out.println();
         System.out.println("Magazine List : ");
-        String format2 = String.format("%-20s %-20s %-30s %-30s ", "Magazine Code", "Magazine Title ", "Magazine publication Periode",
+        String format2 = String.format("%-20s %-30s %-30s %-30s ", "Magazine Code", "Magazine Title ", "Magazine publication Periode",
                 "Magazine publication year");
         System.out.println(format2);
         for (int i = 0; i < books.size(); i++) {
             try {
                 Magazine magazine = (Magazine) books.get(i);
-                System.out.printf("%-20s %-20s %-30s %-30s \n",magazine.getCode(),magazine.getTitle(),magazine.getPublicationPeriod(),magazine.getPublicationYear() );
+                System.out.printf("%-20s %-30s %-30s %-30s \n",magazine.getCode(),magazine.getTitle(),magazine.getPublicationPeriod(),magazine.getPublicationYear() );
             } catch (Exception e) {
                 System.out.print("");
             }
