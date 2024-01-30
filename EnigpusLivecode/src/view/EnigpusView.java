@@ -80,6 +80,7 @@ public class EnigpusView {
                 int publicationYear=Utility.inputIntUtil("Input publication year : ");
                 String writer = Utility.inputUtil("Input the Writer : ");
                 Book book=new Novel(title,publicationYear,publiser,writer);
+                book.setCode(publicationYear+"-"+"A"+"-"+Utility.code());
                 inventoryService.addBook(book);
                 break;
             }else if(type==2){
@@ -87,6 +88,7 @@ public class EnigpusView {
                 String publicationPeriod=Utility.inputUtil("select weekly or monthly");
                 int publicationYear=Utility.inputIntUtil("Input publication Year : ");
                 Book magazine=new Magazine(title,publicationYear,publicationPeriod);
+                magazine.setCode(publicationYear+"-"+"A"+"-"+Utility.code());
                 inventoryService.addBook(magazine);
                 break;
             }else{
