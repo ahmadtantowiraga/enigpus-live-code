@@ -7,6 +7,7 @@ import service.InventoryService;
 import service.InventoryServiceImpl;
 import util.Utility;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -50,7 +51,7 @@ public class EnigpusView {
                         addBookView();
                         break;
                     case 2:
-                        System.out.println("pilihan 2");
+                        searchByTitle();
                         break;
                     case 3:
                         System.out.println("Pilihan 3");
@@ -79,16 +80,14 @@ public class EnigpusView {
                 String publiser =Utility.inputUtil("Input the publiser : ");
                 int publicationYear=Utility.inputIntUtil("Input publication year (Must 4 Charakter) : ");
                 String writer = Utility.inputUtil("Input the Writer : ");
-                Novel book=new Novel(title,publicationYear,publiser,writer);
-                book.setCode(publicationYear+"-"+"A"+"-"+Utility.code());
+                Book book=new Novel(title,publicationYear,publiser,writer,Utility.code1(publicationYear));
                 inventoryService.addBook(book);
                 break;
             }else if(type==2){
                 String title=Utility.inputUtil("Input Magazine title : ");
                 String publicationPeriod=Utility.inputUtil("select weekly or monthly : ");
                 int publicationYear=Utility.inputIntUtil("Input publication Year (Must 4 Charackter) : ");
-                Magazine magazine=new Magazine(title,publicationYear,publicationPeriod);
-                magazine.setCode(publicationYear+"-"+"B"+"-"+Utility.code());
+                Book magazine=new Magazine(title,publicationYear,publicationPeriod,Utility.code2(publicationYear));
                 inventoryService.addBook(magazine);
                 break;
             }else{
@@ -98,29 +97,52 @@ public class EnigpusView {
     }
     public void getAllBookView(){
         List<Book> books = inventoryService.getAllBook();
-        System.out.println("Novel List : ");
-        String format = String.format("%-15s %-15s %-15s %-15s %-15s", "Novel Code", "Novel Title",
-                "Novel Publiser", "Novel Publication Year", "Novel Writer");
-        System.out.println(format);
         for (int i = 0; i < books.size(); i++) {
-            Novel novel=(Novel) books.get(i);
-            if (books.get(0).getCode().charAt(5)=='A'){
-                System.out.printf("%-15s %-15s %-15s %-15s %-15s\n", novel.getCode(), novel.getTitle(),
-                        novel.getPublisher(),novel.getPublicationYear(),novel.getWriter());
-                System.out.println();
+            if (books.get(i).getCode()!=null){
+                if (books.get(i).getCode().charAt(5)=='A'){
+                    Novel novel=(Novel) books.get(i);
+                    System.out.println("Novel Code : "+novel.getCode());
+                    System.out.println("Novel Title : "+novel.getTitle());
+                    System.out.println("Novel Publiser : "+novel.getPublisher());
+                    System.out.println("Novel publication year : "+novel.getPublicationYear());
+                    System.out.println("Novel Writer : "+novel.getWriter());
+                    System.out.println();
+                }else{
+                    Magazine magazine=(Magazine) books.get(i);
+                    System.out.println("Magazine Code : "+magazine.getCode());
+                    System.out.println("Magazine Title : "+magazine.getTitle());
+                    System.out.println("Magazine publication Periodr : "+magazine.getPublicationPeriod());
+                    System.out.println("Magazine publication year : "+magazine.getPublicationYear());
+                    System.out.println();
+                }
             }
         }
-        System.out.println("Magazine List : ");
-        String format2 = String.format("%-15s %-15s %-15s %-15s", "Magazine Code", "Magazine Title",
-                "Magazine publication Period", "Magazine Publication Year");
-        System.out.println(format2);
+    }
+    public void searchByTitle(){
+        String title=Utility.inputUtil("Input the title to seacrh data");
+        List<Book> books = inventoryService.getAllBook();
         for (int i = 0; i < books.size(); i++) {
-            Magazine magazine=(Magazine) books.get(i);
-            if (books.get(0).getCode().charAt(5)=='B'){
-                System.out.printf("%-15s %-15s %-15s %-15s\n", magazine.getCode(),magazine.getTitle(),
-                        magazine.getCode(), magazine.getPublicationYear());
+            Novel novel = (Novel) books.get(i);
+            if (novel.getTitle().equals(title)){
+                System.out.println("Novel Code : "+novel.getCode());
+                System.out.println("Novel Title : "+novel.getTitle());
+                System.out.println("Novel Publiser : "+novel.getPublisher());
+                System.out.println("Novel publication year : "+novel.getPublicationYear());
+                System.out.println("Novel Writer : "+novel.getWriter());
                 System.out.println();
             }
         }
     }
+//    public void novelView(){
+//        List<Book> books = inventoryService.getAllBook();
+//        List<Novel> novel=new ArrayList<>();
+//        for (int i = 0; i < books.size(); i++) {
+//            if (books.get(i).getCode()!=null) {
+//                if (books.get(i).getCode().charAt(5) == 'A') {
+//                    novel.add((Novel) books.get(i));
+//                }
+//            }
+//        }
+//        System.out.println(novel.size());
+//    }
 }

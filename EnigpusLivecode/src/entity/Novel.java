@@ -7,13 +7,14 @@ public class Novel extends Book implements Serializable {
     public int publicationYear;
     public String code;
     private static final long serialVersionUID = 1L;
-    private String publisher;
-    private String writer;
-    public Novel(String title, int publicationYear,String publisher, String writer) {
+    public String publisher;
+    public String writer;
+    public Novel(String title, int publicationYear,String publisher, String writer, String code) {
         this.title=title;
         this.publicationYear=publicationYear;
         this.publisher=publisher;
         this.writer=writer;
+        this.code=code;
     }
 
     @Override

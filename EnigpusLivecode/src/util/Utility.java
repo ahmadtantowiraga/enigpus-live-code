@@ -1,15 +1,25 @@
 package util;
 
 import entity.Book;
+import entity.Magazine;
+import entity.Novel;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Utility {
-    private static final int[] code = new int[1];
+    private static final List<String> code=new ArrayList<>();
 
-    public static int code(){
-        return code[code.length-1]+=1;
+    public static String code1( int year){
+        code.add(year+"-"+"A"+"-"+code.size());
+        return code.get(code.size()-1);
     }
+    public static String code2(int year){
+        code.add(year+"-"+"A"+"-"+code.size());
+        return code.get(code.size()-1);
+    }
+
     public static String inputUtil(String info) {
         Scanner scanner = new Scanner(System.in);
         while (true) {

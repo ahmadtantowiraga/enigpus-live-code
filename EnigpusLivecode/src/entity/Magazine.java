@@ -7,12 +7,13 @@ public class Magazine extends Book implements Serializable {
     public int publicationYear;
     public String code;
     private static final long serialVersionUID = 1L;
-    private String publicationPeriod;
+    public String publicationPeriod;
 
-    public Magazine(String title, int publicationYear, String publicationPeriod) {
+    public Magazine(String title, int publicationYear, String publicationPeriod, String code) {
         this.title=title;
         this.publicationYear=publicationYear;
         this.publicationPeriod=publicationPeriod;
+        this.code=code;
     }
 
     @Override
