@@ -6,4 +6,5 @@ public interface InventoryService {
    public void searchBookByCode();
    public void deleteBookByCode();
    public void getAllBook();
+   public void updateBook();
 }

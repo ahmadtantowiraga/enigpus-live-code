@@ -26,4 +26,9 @@ public class InventoryServiceImpl implements InventoryService {
     public void getAllBook() {
 
     }
+
+    @Override
+    public void updateBook() {
+
+    }
 }
