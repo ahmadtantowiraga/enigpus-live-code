@@ -40,7 +40,8 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public void updateBook() {
-
+    public void updateBook(Book book, int code) {
+        List<Book> books = getAllBook();
+        books.set(code, book);
     }
 }

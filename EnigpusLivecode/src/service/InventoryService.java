@@ -12,5 +12,5 @@ public interface InventoryService {
    public void deleteBookByCode(List<Book> books);
    public List<Book> getAllBook();
 
-   public void updateBook();
+   public void updateBook(Book book, int code);
 }

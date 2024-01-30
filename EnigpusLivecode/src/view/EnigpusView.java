@@ -64,7 +64,7 @@ public class EnigpusView {
                         getAllBookView();
                         break;
                     case 6:
-                        System.out.println("pilihan 6");
+                        updateBook();
                         break;
                 }
             }
@@ -177,5 +177,38 @@ public class EnigpusView {
             }
         }
     }
-
+    public void updateBook() {
+        System.out.println("The type of book you want to Update : ");
+        System.out.println("1. Novel");
+        System.out.println("2. Magazine");
+        int indexCode = 0;
+        while(true){
+            int type = Utility.inputIntUtil("Input 1 to Update Novel or Input 2 to Update Magazine: ");
+            String updateCode = Utility.inputUtil("Enter the key code that will be updated : ");
+            List<Book> books = inventoryService.getAllBook();
+            for (int i = 0; i < books.size(); i++) {
+                if (books.get(i).getCode().equals(updateCode)) {
+                    indexCode = i;
+                }
+            }
+                if (type == 1) {
+                    String title = Utility.inputUtil("Input Novel title : ");
+                    String publiser = Utility.inputUtil("Input the publiser : ");
+                    int publicationYear = Utility.inputIntUtil("Input publication year (Must 4 Charakter) : ");
+                    String writer = Utility.inputUtil("Input the Writer : ");
+                    Book book = new Novel(title, publicationYear, publiser, writer, Utility.code1(publicationYear));
+                    inventoryService.updateBook(book, indexCode);
+                    break;
+                } else if (type == 2) {
+                    String title = Utility.inputUtil("Input Magazine title : ");
+                    String publicationPeriod = Utility.inputUtil("select weekly or monthly : ");
+                    int publicationYear = Utility.inputIntUtil("Input publication Year (Must 4 Charackter) : ");
+                    Book magazine=new Magazine(title,publicationYear,publicationPeriod,Utility.code2(publicationYear));
+                    inventoryService.updateBook(magazine, indexCode);
+                    break;
+                } else {
+                    System.out.println("The choice entered is incorrect, Please Input Again");
+                }
+        }
+    }
 }
