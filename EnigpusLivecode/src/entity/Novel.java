@@ -1,23 +1,30 @@
 package entity;
 
-public class Novel extends Book{
+import java.io.Serializable;
+
+public class Novel extends Book implements Serializable {
+    public String title;
+    public int publicationYear;
+    public String code;
+    private static final long serialVersionUID = 1L;
     private String publisher;
     private String writer;
     public Novel(String title, int publicationYear,String publisher, String writer) {
-        super(title, publicationYear);
+        this.title=title;
+        this.publicationYear=publicationYear;
         this.publisher=publisher;
         this.writer=writer;
     }
 
     @Override
     public String getCode() {
-        return null;
+        return code;
     }
 
     @Override
     public String getTitle() {
 
-        return null;
+        return title;
     }
 
     public String getPublisher() {
@@ -34,5 +41,21 @@ public class Novel extends Book{
 
     public void setWriter(String writer) {
         this.writer = writer;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getPublicationYear() {
+        return publicationYear;
+    }
+
+    public void setPublicationYear(int publicationYear) {
+        this.publicationYear = publicationYear;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

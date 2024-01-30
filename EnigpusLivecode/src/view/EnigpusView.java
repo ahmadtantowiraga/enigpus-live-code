@@ -77,17 +77,17 @@ public class EnigpusView {
             if (type==1){
                 String title=Utility.inputUtil("Input Novel title : ");
                 String publiser =Utility.inputUtil("Input the publiser : ");
-                int publicationYear=Utility.inputIntUtil("Input publication year : ");
+                int publicationYear=Utility.inputIntUtil("Input publication year (Must 4 Charakter) : ");
                 String writer = Utility.inputUtil("Input the Writer : ");
-                Book book=new Novel(title,publicationYear,publiser,writer);
+                Novel book=new Novel(title,publicationYear,publiser,writer);
                 book.setCode(publicationYear+"-"+"A"+"-"+Utility.code());
                 inventoryService.addBook(book);
                 break;
             }else if(type==2){
                 String title=Utility.inputUtil("Input Magazine title : ");
-                String publicationPeriod=Utility.inputUtil("select weekly or monthly");
-                int publicationYear=Utility.inputIntUtil("Input publication Year : ");
-                Book magazine=new Magazine(title,publicationYear,publicationPeriod);
+                String publicationPeriod=Utility.inputUtil("select weekly or monthly : ");
+                int publicationYear=Utility.inputIntUtil("Input publication Year (Must 4 Charackter) : ");
+                Magazine magazine=new Magazine(title,publicationYear,publicationPeriod);
                 magazine.setCode(publicationYear+"-"+"B"+"-"+Utility.code());
                 inventoryService.addBook(magazine);
                 break;
@@ -98,13 +98,12 @@ public class EnigpusView {
     }
     public void getAllBookView(){
         List<Book> books = inventoryService.getAllBook();
-        Novel novel = (Novel) books;
-        Magazine magazine=(Magazine) books;
         System.out.println("Novel List : ");
         String format = String.format("%-15s %-15s %-15s %-15s %-15s", "Novel Code", "Novel Title",
                 "Novel Publiser", "Novel Publication Year", "Novel Writer");
         System.out.println(format);
         for (int i = 0; i < books.size(); i++) {
+            Novel novel=(Novel) books.get(i);
             if (books.get(0).getCode().charAt(5)=='A'){
                 System.out.printf("%-15s %-15s %-15s %-15s %-15s\n", novel.getCode(), novel.getTitle(),
                         novel.getPublisher(),novel.getPublicationYear(),novel.getWriter());
@@ -116,6 +115,7 @@ public class EnigpusView {
                 "Magazine publication Period", "Magazine Publication Year");
         System.out.println(format2);
         for (int i = 0; i < books.size(); i++) {
+            Magazine magazine=(Magazine) books.get(i);
             if (books.get(0).getCode().charAt(5)=='B'){
                 System.out.printf("%-15s %-15s %-15s %-15s\n", magazine.getCode(),magazine.getTitle(),
                         magazine.getCode(), magazine.getPublicationYear());
